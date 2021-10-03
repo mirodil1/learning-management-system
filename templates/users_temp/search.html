@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="results" style="margin-bottom: 450px;">
+            {% if query %}
+                <h4>Courses containing "{{ query }}"</h4>
+                <h6>
+                    {% with results.count as total_results %}
+                        Found {{ total_results }} result{{ total_results|pluralize }}
+                    {% endwith %}
+                </h6>
+                <div class="row">
+                {% for course in results %}
+                    <div class="col s12 m3 l3">
+                        <div class="card small">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="{{ course.cover.url }}">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4"><strong>{{ course.title }}</strong><i class="material-icons right">more_vert</i></span>
+                                <span class="grey-text">Instructor: {{ course.owner.first_name }}</span>
+                                {% if request.user.is_authenticated %}
+                                    <p><a href="{% url 'users:course_detail' course.id course.slug %}">Learn</a></p>
+                                {% else %}
+                                    <p><a href="{% url 'course:login' %}">Log in to enroll</a></p>
+                                {% endif %}
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">{{ course.title }}<i class="material-icons right">close</i></span>
+                                <p>{{ course.overview }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>Not found</p>
+                {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

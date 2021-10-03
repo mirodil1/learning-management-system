@@ -1,0 +1,68 @@
+{% load static %}
+{% load i18n %}
+<header>
+    <nav class="navbar-fixed nav">
+        <div class="nav-wrapper container">
+            <div class="container-fluid">
+                <a href="{% url "users:home" %}" class="brand-logo">
+                    logo
+                </a>
+                <a href="#" data-target="mobile-links" class="sidenav-trigger">
+                  <i class="material-icons">menu</i>
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <i class="material-icons right">search</i>
+                    </li>
+                    <li>
+                        <form class="center" action="{% url "users:post_search" %}" method="GET">
+                            <input id="search" type="search" name="query" placeholder="search for courses" >
+                        </form>
+                    </li>
+                    {% for language in languages %}
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <li>
+                                <input type="hidden" name="lang" value="{{ language.0 }}"/><br>
+                                <input type="submit" class="btn btn-small black-text" value="{{ language.1 }}"/>
+                            </li>
+                        </form>
+                    {% endfor %}
+                    {% if request.user.is_authenticated %}
+                        <ul id="dropdown1" class="dropdown-content">
+                            <li><a href="{% url "course:my_courses" %}">{% trans 'My courses' %}</a></li>
+                            <li><a href="{% url "users:user_profile" request.user.id %}">{% trans 'Profile' %}</a></li>
+                            <li><a href="{% url 'course:create' %}">{% trans 'Create' %}</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#modal1" class="modal-trigger">{% trans 'Log out' %}</a></li>
+                        </ul>
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">{{ request.user.first_name }}<i class="material-icons right">arrow_drop_down</i></a></li>
+                    {% else %}
+                        <li><a href="{% url 'course:login' %}">{% trans 'Log in' %}</a></li>
+                        <li><a href="{% url 'course:register' %}">{% trans 'Sign up' %}</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<ul class="sidenav" id="mobile-links">
+    <li>
+        <form action="#" method="GET">
+            <input id="search" type="search" placeholder="search" name="query" required>
+        </form>
+    </li>
+    <li><a href="#">Log in</a></li>
+    <li><a href="#">Sign up</a></li>
+</ul>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Do you want to log out?</h4>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn-flat">Stay</a>
+        <a href="{% url "course:logout" %}" class="modal-close waves-effect waves-green btn-flat">Log out</a>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Log-in{% endblock %}
+
+
+{% block content %}
+<div class="row z-depth-1 center-align" style="margin-top: 20px; margin-bottom: 150px;">
+    <h1 class="flow-text center">Log in to your account</h1>
+    <div class="divider"></div>
+    <form class="col s12 m12 l12" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-field col s12 m12 l12">
+                <i class="material-icons prefix">email</i>
+{#                {{ form.email }}#}
+                <input id="email" required name="email" type="email" class="validate">
+                <label for="email">Email</label>
+            </div>
+            <div class="input-field col s12 m12 l12">
+                <i class="material-icons prefix">password</i>
+{#                {{ form.password }}#}
+                <input id="password" name="password" required type="password" class="validate">
+                <label for="password">Password</label>
+            </div>
+            <input type="hidden" name="next" value="{{ next }}">
+            <button class="btn waves-effect waves-light center" type="submit" name="action">Log in
+                <i class="material-icons right"></i>
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

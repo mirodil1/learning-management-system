@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}{{ course.title }} modules{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h3>Modules</h3>
+        <div class="divider"></div>
+    </div>
+    <div class="">
+        <div class="row" style="padding: 0 15px; margin-bottom: 150px;">
+            <ul class="collapsible col s12 m7 l7">
+                {% for module in  modules %}
+                    <li>
+                        <div class="collapsible-header">{{ module.title }}</div>
+                        <div class="collapsible-body">
+                            {% if module.description %}
+                                <h4>About module</h4>
+                                <p>{{ module.description|linebreaks }}</p>
+                            {% endif %}
+                          <div class="divider"></div>
+                          <br>
+                          {% if module.video %}
+                              <video class="responsive-video center" width="750px" height="400px" controls src="{{ module.video.url }}"></video>
+                          {% endif %}
+                          <div class="divider"></div>
+                          {% if module.file %}
+                              <h4>Material for download</h4>
+                              <p><a class="btn-small" href="{{ item.file.url }}"><i class="material-icons">download</i></a></p>
+                          {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="col s12 m5 l5">
+                <p class="flow-text"><span>Information about instructor</span></p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ course.owner.first_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Last name</th>
+                            <td>{{ course.owner.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Age</th>
+                            <td>{{ course.owner.age }}</td>
+                        </tr>
+                        <tr>
+                            <th>Bio</th>
+                            <td>{{ course.owner.bio }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

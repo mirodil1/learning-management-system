@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Create course{% endblock %}
+
+{% block content %}
+    <div class="course_form" style="padding: 10px 25px;margin-bottom: 255px; ">
+        <h4>Create course</h4>
+        <div class="divider"></div>
+    {% if request.user.status == 'instructor' %}
+        <form action="" method="POST" enctype="multipart/form-data"  style="padding: 10px 25px;">
+            {% csrf_token %}
+            <div class = "row">
+                <div class="col s12 m7 l7">
+                    <label>Subject</label>
+                    {{ form.subject }}
+                </div>
+                <div class="col s12 m7 l7">
+                    <label>Title</label>
+                    {{ form.title }}
+                </div>
+                <div class="col s12 m7 l7">
+                    <label>Slug</label>
+                    {{ form.slug }}
+                </div>
+                <div class="col s12 m7 l7">
+                    <label>Overview</label>
+                    {{ form.overview }}
+                </div>
+                <div class="col s12 m7 l7">
+                    <label>Upload cover image</label>
+                    <div class = "file-field input-field">
+                        <div class="waves-effect waves-light btn">
+                            <span>Browse</span>
+                            {{ form.cover }}
+                        </div>
+                    <div class = "file-path-wrapper">
+                        <input class = "file-path" disabled type = "text"
+                        placeholder = "Upload file" />
+                    </div>
+                    </div>
+                </div>
+                <div class="col s12 m7 l7">
+                    <button class="waves-effect waves-light btn" type="submit">Create</button>
+                </div>
+            </div>
+        </form>
+    {% else %}
+        <p class="flow-text">You don't have permission to create course, ask for <a href="{% url "users:permission" %}">permission</a>.</p>
+    {% endif %}
+    </div>
+{% endblock %}

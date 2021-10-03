@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Permission{% endblock %}
+
+{% block content %}
+    <div class="permission container z-depth-1" style="margin-bottom: 240px; margin-top: 25px;">
+        <div class="form">
+            <p>Please, send information about yourself</p>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input class="btn-small" type="submit" value="Send">
+            </form>
+        </div>
+    </div>
+{% endblock %}

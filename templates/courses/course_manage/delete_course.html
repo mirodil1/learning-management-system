@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Delete course{% endblock %}
+
+{% block content %}
+    <div class="z-depth-1 center ">
+        <p class="flow-text">Do you want to delete "{{ object.title }}" course ?</p>
+        <form action="" method="POST" style="margin-bottom: 316px;">
+            {% csrf_token %}
+            <a href="{% url 'course:my_courses' %}" class="waves-effect waves-light btn-small green darken-2"><i class="material-icons left">cancel</i>Cancel</a>
+            <button type="submit" class="waves-effect waves-light btn-small red"><i class="material-icons left">delete</i>Delete</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Edit profile{% endblock %}
+
+{% block content %}
+    <p class="flow-text">Profile settings</p>
+    <div class="divider"></div>
+    <div class="edit container z-depth-1" style="margin-top: 15px;">
+        <div class="row"  >
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="input-field">
+                    <label for="">First name</label>
+                    {{ form.first_name}}
+                </div>
+                <div class="input-field">
+                    <label for="">Last name</label>
+                    {{ form.last_name}}
+                </div>
+                <div class="input-field">
+                    <label for="">Age</label>
+                    {{ form.age}}
+                </div>
+                <div class="input-field">
+                    <label for="">Phone number</label>
+                    {{ form.phone_number}}
+                </div>
+                <div class="input-field">
+                    <label for="">Bio</label>
+                    {{ form.bio}}
+                </div>
+                <div>
+                    <label>Upload profile picture</label>
+                    <div class = "file-field input-field">
+                        <div class="waves-effect waves-light btn">
+                            <span>Browse</span>
+                            {{ form.picture }}
+                        </div>
+                    <div class = "file-path-wrapper">
+                        <input class = "file-path" disabled type = "text"
+                        placeholder = "Upload file" />
+                    </div>
+                    </div>
+                </div>
+                <button class="btn btn-small" type="submit" value="save">Save</button>
+            </form>
+        </div>
+    </div>
+    <br>
+{% endblock %}

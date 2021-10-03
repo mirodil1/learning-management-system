@@ -1,0 +1,38 @@
+{% load static %}
+{% load materializecss %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'materialize/css/materialize.css' %}">
+    <link rel="stylesheet" href="{% static 'materialize/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>{% block title %}Homepage{% endblock %}</title>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    {% include 'messages.html' %}
+
+    {% block content %}
+        <main>
+        </main>
+    {% endblock %}
+    {% include 'footer.html' %}
+
+    <script src="{% static "materialize/js/jquery-3.5.1.min.js" %}"></script>
+    <script src="{% static "materialize/js/materialize.js" %}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".sidenav").sidenav();
+            $(".dropdown-trigger").dropdown();
+            $('.modal').modal();
+            $('select').formSelect();
+            $('.collapsible').collapsible();
+            $('select').formSelect();
+        })
+    </script>
+</body>
+
+</html>

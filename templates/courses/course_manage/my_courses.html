@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}My courses{% endblock %}
+
+{% block content %}
+    <div class="my-courses" style="margin-bottom: 253px;">
+        <h4>My courses</h4>
+        <div class="divider"></div>
+        <div class="row">
+                {% for course in object_list %}
+                    <div class="card blue-grey darken-1 col s10 m3 l3">
+                        <div class="card-image">
+                            <img src="{{ course.cover.url }}" width="200" height="200">
+                        </div>
+                        <div class="card-content white-text">
+                            <span class="card-title">{{ course.title }}</span>
+                            <p>{{ course.overview|truncatewords:10 }}</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="{% url 'course:course_edit' course.id %}">Edit</a>
+                            <a href="{% url 'course:course_delete' course.id %}">Delete</a>
+                            <a href="{% url 'course:course_module' course.id %}">Edit modules</a>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="flow-text">You do not have any courses yet, <span><a href="{% url 'course:create' %}">create?</a></span></p>
+                {% endfor %}
+        </div>
+    </div>
+{% endblock %}

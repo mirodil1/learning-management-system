@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load materializecss %}
+
+{% block title %}Create module{% endblock %}
+
+{% block content %}
+    <div class="module">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p class="flow-text">Manage modules</p>
+            <div class="divider"></div>
+            <div class="row container z-depth-1">
+            {{ formset.as_p }}
+{#                {% for form in formset %}#}
+{#                    <div class="col s12 m7 l7 z-depth-1">#}
+{#                        <div class="input-field">#}
+{#                            <label>Title</label>#}
+{#                            {{ form.title }}#}
+{#                        </div>#}
+{#                        <br>#}
+{#                        <div class="input-field">#}
+{#                            <label>Description</label>#}
+{#                            {{ form.description }}#}
+{#                        </div>#}
+{#                        <br>#}
+{#                        <div class="input-field">#}
+{#                            <div class = "file-field input-field">#}
+{#                                <div class="waves-effect waves-light btn-small">#}
+{#                                    <span>Video</span>#}
+{#                                    {{ form.video }}#}
+{#                                </div>#}
+{#                                <div class = "file-path-wrapper">#}
+{#                                    <input class = "file-path" disabled type = "text" placeholder = "Upload video" />#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="input-field">#}
+{#                            <div class = "file-field input-field">#}
+{#                                <div class="waves-effect waves-light btn-small">#}
+{#                                    <span>Image</span>#}
+{#                                    {{ form.image }}#}
+{#                                </div>#}
+{#                                <div class = "file-path-wrapper">#}
+{#                                    <input class = "file-path" disabled type = "text" placeholder = "Upload image" />#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="input-field">#}
+{#                            <div class = "file-field input-field">#}
+{#                                <div class="waves-effect waves-light btn-small">#}
+{#                                    <span>File</span>#}
+{#                                    {{ form.file }}#}
+{#                                </div>#}
+{#                                <div class = "file-path-wrapper">#}
+{#                                    <input class = "file-path" disabled type = "text" placeholder = "Upload file" />#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <label>#}
+{#                            {{ form.DELETE }}#}
+{#                            <span>Delete</span>#}
+{#                        </label>#}
+{#                    </div>#}
+{#                {% endfor %}#}
+{#            </div>#}
+            <input class="waves-effect waves-light btn-small" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+{% endblock %}

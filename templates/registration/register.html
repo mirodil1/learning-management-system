@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+    <div class="row z-depth-1 center-align" style="margin-top: 20px; margin-bottom: 150px;">
+        <h1 class="flow-text center">Sign up</h1>
+        <form class="col s12 m12 l12" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12 m6 l6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="first_name" type="text" name="first_name" required class="validate">
+                    <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <i class="material-icons prefix">email</i>
+                    <input id="email" type="email" name="email" required class="validate">
+                    <label for="email">Email</label>
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <i class="material-icons prefix">password</i>
+                    <input id="password" type="password" required name="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+                <div class="input-field col s12 m6 l6">
+                    <i class="material-icons prefix">password</i>
+                    <input id="password2" type="password" required name="password2" class="validate">
+                    <label for="password2">Confirm password</label>
+                </div>
+                <button class="btn waves-effect waves-light center" type="submit" name="action">Sign up
+                    <i class="material-icons right"></i>
+                </button>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}

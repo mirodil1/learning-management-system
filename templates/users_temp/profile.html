@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <div class="profile" style="padding: 10px; margin-bottom: 100px;">
+        <div class="row">
+            <span class="flow-text">Profile information</span><a class="btn-small right" href="{% url "users:profile_edit" request.user.id %}">Edit</a>
+            <div class="divider"></div>
+            <br>
+            <div class="col s12 m4 l4 border z-depth-1" style="padding: 15px;">
+                <div class="center">
+                    <img src="{{ user.picture.url }}" alt="" width="120" height="120" style="border: 1px transparent; border-radius: 50%;">
+                    <hr>
+                </div>
+                <p><span><strong>First name:</strong> {{ user.first_name }}</span></p>
+                <p><span><strong>Last name:</strong> {{ user.last_name }}</span></p>
+                <span><strong>Status:</strong> <span class="blue white-text border">{{ user.status }}</span></span>
+            </div>
+            <div class="col s12 m1 l1"></div>
+            <div class="col s12 m7 l7 border z-depth-1" style="padding: 15px;">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Age</th>
+                            <td>{{ user.age }}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone number</th>
+                            <td>{{ user.phone_number }}</td>
+                        </tr>
+                        <th>Bio</th>
+                        <td><p>{{ course.owner.bio|linebreaks }}</p></td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
